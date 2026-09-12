@@ -1,9 +1,24 @@
 import { StudentProject, Program, CurriculumStep, ResourceItem, FAQItem, Testimonial } from '../types';
-import backpackAnimationImg from '../assets/images/backpack_animation.jpg';
-import marioGameImg from '../assets/images/mario_game.jpg';
+import superMario2dCoverImg from '../assets/images/super_mario_2d_cover.png';
 import realizationAlbumArtImg from '../assets/images/realization_album_art.jpg';
-import onlineVideoEditorImg from '../assets/images/online_video_editor.jpg';
+import onlineVideoEditorImg from '../assets/images/online_video_editor_screenshot.png';
 import foundersPhotoImg from '../assets/images/founders_exact_photo_1786064058231.jpg';
+import aiAnimationBannerImg from '../assets/images/ai_animation_banner.jpg';
+import aiAnimationYoutubeThumbImg from '../assets/images/ai_animation_youtube_thumb.jpg';
+import aiCodingBannerImg from '../assets/images/ai_coding_banner.jpg';
+import aiMusicBannerImg from '../assets/images/ai_music_banner.jpg';
+import curriculumModule1PreviewImg from '../assets/images/curriculum_module1_preview.png';
+import curriculumModule2PreviewImg from '../assets/images/curriculum_module2_preview.png';
+import curriculumModule3PreviewImg from '../assets/images/curriculum_module3_preview.png';
+import curriculumModule4PreviewImg from '../assets/images/curriculum_module4_preview.png';
+import curriculumModule5PreviewImg from '../assets/images/curriculum_module5_preview.png';
+import curriculumModule6PreviewImg from '../assets/images/curriculum_module6_preview.png';
+import curriculumModule7PreviewImg from '../assets/images/curriculum_module7_preview.png';
+import realizationAudio from '../assets/audio/Realization.m4a';
+import realizationScreenshotImg from '../assets/images/realization_screenshot.png';
+import ghostTownCoverImg from '../assets/images/ghost_town_cover.png';
+import laughingInTheLightAudio from '../assets/audio/Laughing_in_the_Light.m4a';
+import theOnlyTacoCoverImg from '../assets/images/the_only_taco_cover.png';
 
 export const FOUNDERS_INFO = {
   names: "Ameya Gupta & Pranay Gupta",
@@ -96,16 +111,40 @@ export const PROGRAMS: Program[] = [
   {
     id: "school-workshops",
     title: "Online Video Recordings to Master AI Like a Pro",
-    status: "Coming Soon",
+    status: "Available Now",
     subtitle: "Self-Paced On-Demand AI Video Masterclass",
     description: "Self-paced video recordings covering generative AI tools, prompt engineering, digital media creation, and hands-on projects to master AI like a pro.",
     duration: "3 hours in total recordings",
-    schedule: "",
+    schedule: "On-demand self-paced",
     targetAudience: "5th to 12th Graders",
     highlights: [],
-    iconName: "Building2",
-    badge: "Coming Soon",
-    gradient: "from-teal-500 to-cyan-600"
+    iconName: "Video",
+    badge: "Masterclass Videos",
+    gradient: "from-teal-500 to-cyan-600",
+    videoItems: [
+      {
+        id: "ai-animations",
+        header: "AI Animations",
+        videoUrl: "https://www.youtube.com/watch?v=heaTgXNPrdA",
+        thumbnailUrl: aiAnimationYoutubeThumbImg,
+        status: "available",
+        badge: "Watch on YouTube"
+      },
+      {
+        id: "ai-coding",
+        header: "AI Coding",
+        thumbnailUrl: aiCodingBannerImg,
+        status: "coming-soon",
+        badge: "Coming Soon"
+      },
+      {
+        id: "ai-music",
+        header: "AI Music",
+        thumbnailUrl: aiMusicBannerImg,
+        status: "coming-soon",
+        badge: "Coming Soon"
+      }
+    ]
   }
 ];
 
@@ -117,7 +156,8 @@ export const CURRICULUM_STEPS: CurriculumStep[] = [
     detailedOutcome: "Students learn how AI processes pattern recognition vs human imagination, play interactive classifier games, and establish safety guidelines.",
     toolsUsed: [],
     sampleProject: "",
-    iconName: "Brain"
+    iconName: "Brain",
+    previewImage: curriculumModule1PreviewImg
   },
   {
     stepNumber: 2,
@@ -126,7 +166,8 @@ export const CURRICULUM_STEPS: CurriculumStep[] = [
     detailedOutcome: "Discover how adjectives, perspectives, lighting cues, and constraints transform generic AI responses into highly focused creative outputs.",
     toolsUsed: ["Prompt Canvas", "ChatGPT"],
     sampleProject: "",
-    iconName: "Terminal"
+    iconName: "Terminal",
+    previewImage: curriculumModule2PreviewImg
   },
   {
     stepNumber: 3,
@@ -135,7 +176,8 @@ export const CURRICULUM_STEPS: CurriculumStep[] = [
     detailedOutcome: "Explore style parameters, lighting, brushstrokes, and ethics regarding artist attribution and original creation.",
     toolsUsed: ["KIE.ai", "Nano Banana 2"],
     sampleProject: "",
-    iconName: "Image"
+    iconName: "Image",
+    previewImage: curriculumModule3PreviewImg
   },
   {
     stepNumber: 4,
@@ -144,7 +186,8 @@ export const CURRICULUM_STEPS: CurriculumStep[] = [
     detailedOutcome: "Learn keyframing basics, camera motion prompts, and looping background synthesis for digital storytelling.",
     toolsUsed: ["KIE.ai", "Seedance 1.5 Pro", "ElevenLabs", "CapCut"],
     sampleProject: "",
-    iconName: "Film"
+    iconName: "Film",
+    previewImage: curriculumModule4PreviewImg
   },
   {
     stepNumber: 5,
@@ -153,7 +196,8 @@ export const CURRICULUM_STEPS: CurriculumStep[] = [
     detailedOutcome: "Understand tempo, mood tags, verse/chorus structures, and combining generated stems with human digital audio workstation edits.",
     toolsUsed: ["Suno", "ChatGPT", "Claude"],
     sampleProject: "",
-    iconName: "Music"
+    iconName: "Music",
+    previewImage: curriculumModule5PreviewImg
   },
   {
     stepNumber: 6,
@@ -162,7 +206,8 @@ export const CURRICULUM_STEPS: CurriculumStep[] = [
     detailedOutcome: "Students write natural language prompts that AI translates into executable game loops, score variables, and particle effects.",
     toolsUsed: ["Google AI Studio", "Grok", "Replit"],
     sampleProject: "You can develop games with AI Code.",
-    iconName: "Code"
+    iconName: "Code",
+    previewImage: curriculumModule6PreviewImg
   },
   {
     stepNumber: 7,
@@ -171,7 +216,8 @@ export const CURRICULUM_STEPS: CurriculumStep[] = [
     detailedOutcome: "Students pitch their project idea, iterate with high school student mentors, write a short creator statement on ethical usage, and present live to families.",
     toolsUsed: ["Google Slides", "Canva"],
     sampleProject: "",
-    iconName: "Trophy"
+    iconName: "Trophy",
+    previewImage: curriculumModule7PreviewImg
   }
 ];
 
@@ -182,11 +228,11 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     studentName: "Student Creator",
     studentGrade: "Middle School Student",
     category: "Animation",
-    thumbnailUrl: backpackAnimationImg,
     badgeColor: "bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
     tools: ["ElevenLabs", "Kie.ai", "Seedance 1.5 Pro"],
     description: "A short fiction animation of a kid discovering a new adventure hidden inside his backpack!",
     featured: true,
+    showcaseAvailable: false,
     fullContent: {
       keyFeatures: ["Audio generation", "Stable Frame"],
       teacherNotes: "The student did a great job in writing a creative prompt!"
@@ -202,6 +248,7 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     tools: ["ElevenLabs", "Kie.ai", "Seedance 1.5 Pro", "Nano Banana 2", "Pixabay", "Capcut"],
     description: "An animation advertisement sponsoring a robot called the 'Homework Hero 3000.'",
     featured: true,
+    showcaseAvailable: false,
     fullContent: {
       keyFeatures: ["Audio generation", "Stable Frame"]
     }
@@ -212,28 +259,41 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     studentName: "Created as a class",
     studentGrade: "Class Project",
     category: "Animation",
+    thumbnailUrl: theOnlyTacoCoverImg,
     badgeColor: "bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
     tools: ["ElevenLabs", "Kie.ai", "Seedance 1.5 Pro", "Nano Banana 2", "Pixabay", "Capcut"],
     description: "An animation about how a boy ate the first and last ever taco.",
     featured: true,
+    showcaseAvailable: true,
+    youtubeUrl: "https://www.youtube.com/watch?v=C3ilEGii8G4",
     fullContent: {
-      keyFeatures: ["Audio generation", "Stable Frame"]
+      keyFeatures: ["Audio generation", "Stable Frame", "YouTube Video Release"]
     }
   },
   {
     id: "proj-2",
-    title: "A 2D Mario Game",
+    title: "Super Mario 2D",
     studentName: "Student Creator",
     studentGrade: "Middle School Student",
     category: "Games",
-    thumbnailUrl: marioGameImg,
+    thumbnailUrl: superMario2dCoverImg,
     badgeColor: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
     tools: ["Google AI Studio", "Mario Instructions"],
-    description: "A browser game where students pick a character, and jump through obstacles, up until the last level, where you have to defeat the boss... Kind of like Super Mario!",
+    description: "An interactive browser platformer where students pick a character and jump through obstacles, up until the last level to defeat Bowser and save Princess Peach!",
     featured: true,
+    showcaseAvailable: true,
+    isInteractiveGame: true,
+    gameId: "mario",
     fullContent: {
-      keyFeatures: ["Control page", "Sound effects"],
-      teacherNotes: "Made prompt within 30 mins, and generated a game with few bugs."
+      keyFeatures: [
+        "Playable 2D Platformer Engine with 60 FPS Canvas Physics",
+        "6 Playable Characters (Mario, Luigi, Toad, Peach, Yoshi, Wario)",
+        "4 Themed Worlds + Secret Bonus Pipe Level",
+        "Bowser Boss Battle with Fireballs & Bridge Collapse",
+        "Interactive HUD with Lives, Coins, Score, and Character Shop",
+        "Chiptune BGM and Retro Sound Effects Engine"
+      ],
+      teacherNotes: "Made prompt within 30 mins, and generated a game with full collision mechanics, animations, and sound effects."
     }
   },
   {
@@ -244,10 +304,11 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     category: "Games",
     badgeColor: "bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300",
     tools: ["Google AI Studio"],
-    description: "An interactive Harry Potter inspired game.",
+    description: "An interactive Harry Potter inspired game. Showcase not available.",
     featured: true,
+    showcaseAvailable: false,
     fullContent: {
-      keyFeatures: ["Music", "Instructions", "Interactive"]
+      keyFeatures: ["Music", "Instructions", "Interactive", "Showcase not available"]
     }
   },
   {
@@ -256,11 +317,13 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     studentName: "Created as a class",
     studentGrade: "Class Project",
     category: "Music",
-    thumbnailUrl: realizationAlbumArtImg,
+    thumbnailUrl: realizationScreenshotImg,
     badgeColor: "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
     tools: ["Suno AI", "ChatGPT", "Claude"],
     description: "A song made about how others feelings don't make you happy.",
     featured: true,
+    audioUrl: realizationAudio,
+    showcaseAvailable: true,
     fullContent: {
       keyFeatures: ["Copyright-free student release", "Custom album cover art"]
     }
@@ -271,12 +334,15 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     studentName: "Created as a class",
     studentGrade: "Class Project",
     category: "Music",
+    thumbnailUrl: ghostTownCoverImg,
     badgeColor: "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
-    tools: ["ChatGPT Plus", "Claude Pro"],
+    tools: ["ChatGPT Plus", "Claude Pro", "Suno AI"],
     description: "A song about how a creepy beginning can become a joyful ending.",
     featured: true,
+    audioUrl: laughingInTheLightAudio,
+    showcaseAvailable: true,
     fullContent: {
-      keyFeatures: ["Copyright-free student release", "Custom album cover art", "Lyrics self generated"]
+      keyFeatures: ["Copyright-free student release", "Custom album cover art", "Original student lyrics & composition"]
     }
   },
   {
@@ -290,8 +356,11 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     tools: ["Google AI Studio", "ChatGPT"],
     description: "An online video editor, designed to build animations, videos, or anything of your imagination.",
     featured: true,
+    showcaseAvailable: true,
+    isInteractiveEditor: true,
+    editorId: "video-editor",
     fullContent: {
-      keyFeatures: ["Transitions", "High video quality"]
+      keyFeatures: ["Transitions & Effects", "High Video Quality", "Timeline Control", "Web Application Build", "Browser-based Multi-track Timeline", "Procedural Audio Synthesizer"]
     }
   },
   {
@@ -304,6 +373,7 @@ export const STUDENT_PROJECTS: StudentProject[] = [
     tools: ["Google AI Studio"],
     description: "A virtual dining place, where you can take your own order, and create your own food!",
     featured: true,
+    showcaseAvailable: false,
     fullContent: {
       keyFeatures: ["Music", "Instructions"]
     }

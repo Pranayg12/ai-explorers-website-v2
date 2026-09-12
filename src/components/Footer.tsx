@@ -48,11 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, isDarkMode, onJoin
               A student-led educational non-profit training middle school students to become creative, ethical, and confident AI explorers.
             </p>
 
-            <div className="pt-2">
-              <span className="inline-block text-xs font-mono px-3 py-1 rounded-full bg-slate-800 text-blue-400 border border-slate-700">
-                Founded by Ameya Gupta & Pranay Gupta
-              </span>
-            </div>
+
           </div>
 
           {/* Col 2: Quick Links */}

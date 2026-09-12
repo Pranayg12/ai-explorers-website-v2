@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { PROGRAMS } from '../data/mockData';
-import { Sun, Calendar, Building2, CheckCircle2, ArrowRight, Clock, Users, ExternalLink, QrCode, Copy, Check } from 'lucide-react';
+import { Sun, Calendar, Building2, Video, CheckCircle2, Clock, Users, ExternalLink, QrCode, Copy, Check, Play, Lock } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 
 interface ProgramsSectionProps {
   isDarkMode: boolean;
-  onSelectProgram: (programId: string) => void;
+  onSelectProgram?: (programId: string) => void;
 }
 
-export const ProgramsSection: React.FC<ProgramsSectionProps> = ({ isDarkMode, onSelectProgram }) => {
+export const ProgramsSection: React.FC<ProgramsSectionProps> = ({ isDarkMode }) => {
   const [copied, setCopied] = useState<boolean>(false);
-  const [showQrModal, setShowQrModal] = useState<boolean>(false);
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Sun': return <Sun className="w-7 h-7 text-white" />;
       case 'Calendar': return <Calendar className="w-7 h-7 text-white" />;
       case 'Building2': return <Building2 className="w-7 h-7 text-white" />;
+      case 'Video': return <Video className="w-7 h-7 text-white" />;
       default: return <Sun className="w-7 h-7 text-white" />;
     }
   };
@@ -118,6 +118,116 @@ export const ProgramsSection: React.FC<ProgramsSectionProps> = ({ isDarkMode, on
                     </div>
                   )}
 
+                  {/* Video Items Section for Online Masterclasses */}
+                  {prog.videoItems && prog.videoItems.length > 0 && (
+                    <div className="space-y-6 pt-1">
+                      {prog.videoItems.map((vItem) => (
+                        <div key={vItem.id} className="space-y-2.5">
+                          {/* Header and status badge */}
+                          <div className="flex items-center justify-between">
+                            <span className={`text-xs font-bold uppercase tracking-wider ${isDarkMode ? 'text-slate-200' : 'text-slate-800'}`}>
+                              {vItem.header}
+                            </span>
+                            {vItem.status === 'available' ? (
+                              <span className="text-[11px] font-semibold text-red-500 dark:text-red-400 flex items-center gap-1">
+                                <Play className="w-3 h-3 fill-current" /> Video Recording
+                              </span>
+                            ) : (
+                              <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                                <Lock className="w-3 h-3 text-slate-400" /> Coming Soon
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Video Banner Thumbnail */}
+                          {vItem.status === 'available' && vItem.videoUrl ? (
+                            <a
+                              href={vItem.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="relative block group/video rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-red-500"
+                              title={`Watch ${vItem.header} on YouTube`}
+                            >
+                              <div className="relative w-full aspect-[16/9] bg-slate-950 overflow-hidden flex items-center justify-center">
+                                <img
+                                  src={vItem.thumbnailUrl}
+                                  alt={vItem.header}
+                                  referrerPolicy="no-referrer"
+                                  className="w-full h-full object-cover group-hover/video:scale-105 transition-transform duration-300"
+                                  onError={(e) => {
+                                    if (vItem.videoUrl && !e.currentTarget.dataset.fallback) {
+                                      e.currentTarget.dataset.fallback = "true";
+                                      e.currentTarget.src = "https://img.youtube.com/vi/heaTgXNPrdA/maxresdefault.jpg";
+                                    }
+                                  }}
+                                />
+                                {/* Play overlay */}
+                                <div className="absolute inset-0 bg-black/25 group-hover/video:bg-black/10 transition-colors flex items-center justify-center">
+                                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-red-600/95 text-white flex items-center justify-center shadow-lg group-hover/video:scale-110 group-hover/video:bg-red-500 transition-all duration-300">
+                                    <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-current ml-0.5" />
+                                  </div>
+                                </div>
+                                <span className="absolute bottom-1.5 right-1.5 px-2 py-0.5 rounded bg-black/80 text-white text-[9px] font-bold tracking-wide flex items-center gap-1 backdrop-blur-sm">
+                                  YouTube
+                                </span>
+                              </div>
+                            </a>
+                          ) : (
+                            <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700/80 shadow-sm cursor-default select-none group/locked">
+                              <div className="relative w-full aspect-[2.4/1] bg-slate-950 overflow-hidden flex items-center justify-center">
+                                <img
+                                  src={vItem.thumbnailUrl}
+                                  alt={vItem.header}
+                                  referrerPolicy="no-referrer"
+                                  className="w-full h-full object-cover grayscale-[25%] opacity-85"
+                                />
+                                {/* Lock overlay */}
+                                <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
+                                  <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-900/90 text-slate-200 border border-slate-700/90 flex items-center justify-center shadow-md">
+                                    <Lock className="w-5 h-5 text-slate-300" />
+                                  </div>
+                                </div>
+                                <span className="absolute bottom-1.5 right-1.5 px-2 py-0.5 rounded bg-slate-900/90 text-slate-300 border border-slate-700 text-[9px] font-bold tracking-wide flex items-center gap-1 backdrop-blur-sm">
+                                  <Lock className="w-2.5 h-2.5" /> In Production
+                                </span>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Action button corresponding to this video item */}
+                          {vItem.status === 'available' && vItem.videoUrl ? (
+                            <a
+                              href={vItem.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm text-white shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2 group text-center ${
+                                vItem.actionText === 'GO TRY'
+                                  ? 'bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600 hover:from-cyan-500 hover:via-blue-500 hover:to-indigo-500'
+                                  : 'bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 hover:from-red-500 hover:to-pink-500'
+                              }`}
+                            >
+                              {vItem.actionText !== 'GO TRY' && <Play className="w-3.5 h-3.5 fill-current" />}
+                              <span>{vItem.actionText || 'Watch on YouTube'}</span>
+                              <ExternalLink className="w-3.5 h-3.5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                            </a>
+                          ) : (
+                            <button
+                              disabled
+                              className={`w-full py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 ${
+                                isDarkMode
+                                  ? 'bg-slate-800/80 text-slate-400 border border-slate-700/80'
+                                  : 'bg-slate-200/80 text-slate-500 border border-slate-300/80'
+                              }`}
+                            >
+                              <Lock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
+                              <span>Coming Soon</span>
+                            </button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
                   {/* QR Code Section for Programs with Signup Link */}
                   {prog.signupUrl && prog.showQrCode !== false && (
                     <div className={`p-4 rounded-2xl border text-center space-y-3 ${
@@ -154,41 +264,43 @@ export const ProgramsSection: React.FC<ProgramsSectionProps> = ({ isDarkMode, on
                 </div>
               </div>
 
-              {/* Action Button Footer */}
-              <div className="p-8 pt-0 space-y-3">
-                {prog.signupUrl ? (
-                  <a
-                    href={prog.signupUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3.5 px-4 rounded-2xl font-bold text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-md hover:shadow-xl shadow-indigo-500/25 transition-all duration-300 flex items-center justify-center gap-2 group text-center"
-                  >
-                    <span>Sign up at {prog.signupUrl}</span>
-                    <ExternalLink className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
-                ) : prog.signupText ? (
-                  <div
-                    className={`w-full py-3.5 px-4 rounded-2xl font-bold text-xs sm:text-sm text-center transition-all duration-300 flex items-center justify-center gap-2 leading-snug ${
-                      isDarkMode
-                        ? 'bg-slate-800/90 text-indigo-300 border border-slate-700/80'
-                        : 'bg-indigo-50 text-indigo-900 border border-indigo-200/80 shadow-sm'
-                    }`}
-                  >
-                    <span>{prog.signupText}</span>
-                  </div>
-                ) : (
-                  <button
-                    disabled
-                    className={`w-full py-3.5 px-4 rounded-2xl font-bold text-sm cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 ${
-                      isDarkMode
-                        ? 'bg-slate-800/80 text-slate-400 border border-slate-700/80'
-                        : 'bg-slate-200/80 text-slate-500 border border-slate-300/80'
-                    }`}
-                  >
-                    <span>Coming Soon</span>
-                  </button>
-                )}
-              </div>
+              {/* Action Button Footer (for non-videoItems programs) */}
+              {!prog.videoItems && (
+                <div className="p-8 pt-0 space-y-3">
+                  {prog.signupUrl ? (
+                    <a
+                      href={prog.signupUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3.5 px-4 rounded-2xl font-bold text-sm bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white shadow-md hover:shadow-xl shadow-indigo-500/25 transition-all duration-300 flex items-center justify-center gap-2 group text-center"
+                    >
+                      <span>Sign up at {prog.signupUrl}</span>
+                      <ExternalLink className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </a>
+                  ) : prog.signupText ? (
+                    <div
+                      className={`w-full py-3.5 px-4 rounded-2xl font-bold text-xs sm:text-sm text-center transition-all duration-300 flex items-center justify-center gap-2 leading-snug ${
+                        isDarkMode
+                          ? 'bg-slate-800/90 text-indigo-300 border border-slate-700/80'
+                          : 'bg-indigo-50 text-indigo-900 border border-indigo-200/80 shadow-sm'
+                      }`}
+                    >
+                      <span>{prog.signupText}</span>
+                    </div>
+                  ) : (
+                    <button
+                      disabled
+                      className={`w-full py-3.5 px-4 rounded-2xl font-bold text-sm cursor-not-allowed transition-all duration-300 flex items-center justify-center gap-2 ${
+                        isDarkMode
+                          ? 'bg-slate-800/80 text-slate-400 border border-slate-700/80'
+                          : 'bg-slate-200/80 text-slate-500 border border-slate-300/80'
+                      }`}
+                    >
+                      <span>Coming Soon</span>
+                    </button>
+                  )}
+                </div>
+              )}
 
             </div>
           ))}

@@ -3,53 +3,55 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
-import { PageTab } from './types';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { HeroSection } from './components/HeroSection';
-import { WhyUsSection } from './components/WhyUsSection';
-import { ProgramsSection } from './components/ProgramsSection';
-import { CurriculumSection } from './components/CurriculumSection';
-import { ShowcaseSection } from './components/ShowcaseSection';
-import { ParentSection } from './components/ParentSection';
-import { FAQSection } from './components/FAQSection';
-import { AboutSection } from './components/AboutSection';
-import { StatisticsSection } from './components/StatisticsSection';
+import React, { useState, useEffect } from "react";
+import { Navbar } from "./components/Navbar";
+import { HeroSection } from "./components/HeroSection";
+import { AboutSection } from "./components/AboutSection";
+import { StatisticsSection } from "./components/StatisticsSection";
+import { WhyUsSection } from "./components/WhyUsSection";
+import { ProgramsSection } from "./components/ProgramsSection";
+import { CurriculumSection } from "./components/CurriculumSection";
+import { ShowcaseSection } from "./components/ShowcaseSection";
+import { ParentSection } from "./components/ParentSection";
+import { FAQSection } from "./components/FAQSection";
+import { Footer } from "./components/Footer";
+import { SuperMarioGameModal } from "./components/SuperMarioGameModal";
+import { OnlineVideoEditorModal } from "./components/OnlineVideoEditorModal";
+import { PageTab } from "./types";
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<PageTab>('home');
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
-  const [, setSelectedProgram] = useState<string>('');
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    const saved = localStorage.getItem("ai_explorers_theme");
+    return saved !== null ? saved === "dark" : true;
+  });
 
-  // Handle Dark Mode document class
+  const [activeTab, setActiveTab] = useState<PageTab>("home");
+  
+  // Interactive Modal States
+  const [activeGameModal, setActiveGameModal] = useState<string | null>(null);
+  const [activeVideoEditorModal, setActiveVideoEditorModal] = useState<boolean>(false);
+
   useEffect(() => {
+    localStorage.setItem("ai_explorers_theme", isDarkMode ? "dark" : "light");
     if (isDarkMode) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
 
   const handleJoinClick = () => {
-    setActiveTab('programs');
-    const el = document.getElementById('programs');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleSelectProgram = (programId: string) => {
-    setSelectedProgram(programId);
-    setActiveTab('programs');
-    const el = document.getElementById('programs');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    const programsSection = document.getElementById("programs");
+    if (programsSection) {
+      programsSection.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${
-      isDarkMode ? 'bg-slate-950 text-white' : 'bg-slate-50 text-slate-900'
+    <div className={`min-h-screen font-sans transition-colors duration-300 ${
+      isDarkMode ? "bg-slate-950 text-slate-100" : "bg-white text-slate-900"
     }`}>
-      
-      {/* Sticky Navigation Bar */}
+      {/* Sticky Header Navigation */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -58,37 +60,50 @@ export default function App() {
         onJoinClick={handleJoinClick}
       />
 
-      {/* Main Single-Page Content with Smooth Scroll Anchors */}
-      <main className="flex-1">
-        <div id="home" className="scroll-mt-24">
+      {/* Main Page Layout Sections */}
+      <main>
+        <div id="home">
           <HeroSection
             setActiveTab={setActiveTab}
             isDarkMode={isDarkMode}
             onJoinClick={handleJoinClick}
           />
         </div>
-        <div id="about" className="scroll-mt-24">
+
+        <div id="about">
           <AboutSection isDarkMode={isDarkMode} />
         </div>
-        <div id="impact" className="scroll-mt-24">
+
+        <div id="impact">
           <StatisticsSection isDarkMode={isDarkMode} />
         </div>
-        <div id="why-us" className="scroll-mt-24">
+
+        <div id="why-us">
           <WhyUsSection isDarkMode={isDarkMode} />
         </div>
-        <div id="programs" className="scroll-mt-24">
-          <ProgramsSection isDarkMode={isDarkMode} onSelectProgram={handleSelectProgram} />
+
+        <div id="programs">
+          <ProgramsSection isDarkMode={isDarkMode} />
         </div>
-        <div id="curriculum" className="scroll-mt-24">
+
+        <div id="curriculum">
           <CurriculumSection isDarkMode={isDarkMode} />
         </div>
-        <div id="gallery" className="scroll-mt-24">
-          <ShowcaseSection isDarkMode={isDarkMode} />
+
+        {/* Student Showcase with Super Mario 2D and Online Video Editor */}
+        <div id="gallery">
+          <ShowcaseSection
+            isDarkMode={isDarkMode}
+            onLaunchGame={(gameId) => setActiveGameModal(gameId)}
+            onLaunchEditor={() => setActiveVideoEditorModal(true)}
+          />
         </div>
-        <div id="testimonials" className="scroll-mt-24">
+
+        <div id="testimonials">
           <ParentSection isDarkMode={isDarkMode} />
         </div>
-        <div id="faq" className="scroll-mt-24">
+
+        <div id="faq">
           <FAQSection isDarkMode={isDarkMode} />
         </div>
       </main>
@@ -100,6 +115,18 @@ export default function App() {
         onJoinClick={handleJoinClick}
       />
 
+      {/* Super Mario 2D Interactive Game Modal */}
+      {activeGameModal === "mario" && (
+        <SuperMarioGameModal onClose={() => setActiveGameModal(null)} />
+      )}
+
+      {/* Online Video Editor Interactive Modal Popup */}
+      {activeVideoEditorModal && (
+        <OnlineVideoEditorModal
+          onClose={() => setActiveVideoEditorModal(false)}
+          isDarkMode={isDarkMode}
+        />
+      )}
     </div>
   );
 }

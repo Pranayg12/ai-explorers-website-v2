@@ -13,7 +13,9 @@ import {
   Star,
   ArrowDown, 
   CheckCircle,
-  Wrench
+  Wrench,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 interface CurriculumSectionProps {
@@ -22,6 +24,7 @@ interface CurriculumSectionProps {
 
 export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode }) => {
   const [selectedStep, setSelectedStep] = useState<number>(1);
+  const [isImageModalOpen, setIsImageModalOpen] = useState<boolean>(false);
 
   const getIcon = (iconName: string) => {
     switch (iconName) {
@@ -59,10 +62,10 @@ export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode
         </div>
 
         {/* Timeline Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Timeline Nodes List */}
-          <div className="lg:col-span-6 space-y-3">
+          <div className="lg:col-span-5 space-y-3">
             {CURRICULUM_STEPS.map((step) => {
               const isSelected = selectedStep === step.stepNumber;
               return (
@@ -124,7 +127,7 @@ export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode
           </div>
 
           {/* Interactive Step Details Card */}
-          <div className="lg:col-span-6 lg:sticky lg:top-28">
+          <div className="lg:col-span-7 lg:sticky lg:top-28">
             <div className={`p-8 rounded-3xl border shadow-xl transition-all duration-300 relative overflow-hidden ${
               isDarkMode
                 ? 'bg-slate-900 border-slate-800 shadow-blue-950/30'
@@ -150,19 +153,59 @@ export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode
 
               {/* Detailed Outcome */}
               <div className="py-6 space-y-6">
-                <div>
-                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5 ${
-                    isDarkMode ? 'text-slate-400' : 'text-slate-500'
-                  }`}>
-                    <CheckCircle className="w-4 h-4 text-emerald-500" />
-                    Learning Objective & Skills Acquired
-                  </h4>
-                  <p className={`text-sm sm:text-base leading-relaxed ${
-                    isDarkMode ? 'text-slate-200' : 'text-slate-700'
-                  }`}>
-                    {activeStepData.detailedOutcome}
-                  </p>
-                </div>
+                {activeStepData.previewImage ? (
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    {/* Left: Detailed explanation */}
+                    <div className="md:col-span-5 space-y-2">
+                      <h4 className={`text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${
+                        isDarkMode ? 'text-slate-400' : 'text-slate-500'
+                      }`}>
+                        <CheckCircle className="w-4 h-4 text-emerald-500" />
+                        Learning Objective & Skills Acquired
+                      </h4>
+                      <p className={`text-sm sm:text-base leading-relaxed ${
+                        isDarkMode ? 'text-slate-200' : 'text-slate-700'
+                      }`}>
+                        {activeStepData.detailedOutcome}
+                      </p>
+                    </div>
+
+                    {/* Right: Screenshot preview (bigger, rounded, clickable for modal) */}
+                    <div className="md:col-span-7">
+                      <div
+                        onClick={() => setIsImageModalOpen(true)}
+                        className="group relative rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/80 shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer bg-slate-950"
+                        title="Click to view full size"
+                      >
+                        <img
+                          src={activeStepData.previewImage}
+                          alt={`${activeStepData.title} classroom preview`}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-auto object-cover rounded-2xl group-hover:scale-[1.02] transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                          <span className="px-3 py-1.5 rounded-lg bg-black/80 text-white text-xs font-semibold backdrop-blur-sm shadow-md flex items-center gap-1.5">
+                            <Maximize2 className="w-3.5 h-3.5" /> View Larger
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <h4 className={`text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5 ${
+                      isDarkMode ? 'text-slate-400' : 'text-slate-500'
+                    }`}>
+                      <CheckCircle className="w-4 h-4 text-emerald-500" />
+                      Learning Objective & Skills Acquired
+                    </h4>
+                    <p className={`text-sm sm:text-base leading-relaxed ${
+                      isDarkMode ? 'text-slate-200' : 'text-slate-700'
+                    }`}>
+                      {activeStepData.detailedOutcome}
+                    </p>
+                  </div>
+                )}
 
                 {/* Tools Introduced */}
                 {activeStepData.toolsUsed && activeStepData.toolsUsed.length > 0 && (
@@ -223,6 +266,40 @@ export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode
         </div>
 
       </div>
+
+      {/* Fullscreen Image Modal for Module Preview */}
+      {isImageModalOpen && activeStepData.previewImage && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setIsImageModalOpen(false)}
+        >
+          <div 
+            className="relative max-w-5xl w-full bg-slate-900 border border-slate-700/80 rounded-3xl overflow-hidden shadow-2xl p-2 sm:p-3"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-3 border-b border-slate-800 text-white">
+              <span className="text-xs font-mono font-bold text-teal-400 uppercase tracking-wider">
+                Module 0{activeStepData.stepNumber} • {activeStepData.title} Preview
+              </span>
+              <button
+                onClick={() => setIsImageModalOpen(false)}
+                className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                title="Close"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <div className="p-2 sm:p-3 bg-slate-950 rounded-2xl overflow-hidden flex items-center justify-center mt-2">
+              <img
+                src={activeStepData.previewImage}
+                alt={`${activeStepData.title} Preview`}
+                referrerPolicy="no-referrer"
+                className="w-full h-auto max-h-[80vh] object-contain rounded-xl"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

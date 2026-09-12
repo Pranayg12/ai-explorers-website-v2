@@ -1,6 +1,6 @@
 {
   "name": "AI Explorers",
-  "description": "Empowering middle school students to become AI creators, not just AI users, through hands-on educational programs.",
+  "description": "Empowering middle school students through AI literacy, hands-on generative AI workshops, interactive game design, video editing, and coding.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
