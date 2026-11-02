@@ -95,12 +95,11 @@ export interface AICopilotMessage {
 
 export type PageTab = 
   | 'home' 
-  | 'about' 
   | 'impact' 
   | 'why-us' 
+  | 'our-class'
   | 'programs' 
-  | 'curriculum' 
-  | 'gallery' 
+  | 'resources'
   | 'testimonials' 
   | 'faq';
 
@@ -151,7 +150,7 @@ export interface Program {
   targetAudience: string;
   highlights: string[];
   iconName: string;
-  badge: string;
+  badge?: string;
   gradient: string;
   signupText?: string;
   signupUrl?: string;
@@ -168,19 +167,27 @@ export interface CurriculumStep {
   sampleProject: string;
   iconName: string;
   previewImage?: string;
+  purpose?: string;
+  videoUrl?: string;
 }
 
 export interface ResourceItem {
   id: string;
   title: string;
-  category: string;
+  category: 'Tutorials' | 'Tools' | 'Articles' | 'Safety' | 'Guides' | string;
   summary: string;
-  readTime: string;
-  difficulty: string;
-  format: string;
-  contentSnippet: string;
-  linkText: string;
-  downloadable?: boolean;
+  readTime?: string;
+  difficulty?: string;
+  format: 'Video' | 'Tool' | 'Article' | 'Guide' | 'PDF' | string;
+  url: string;
+  thumbnailUrl?: string;
+  badge?: string;
+  tags?: string[];
+  isFeatured?: boolean;
+  linkText?: string;
+  downloadUrl?: string;
+  fileSize?: string;
+  bulletPoints?: string[];
 }
 
 export interface FAQItem {

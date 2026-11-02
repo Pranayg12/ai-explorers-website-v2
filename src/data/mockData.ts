@@ -7,13 +7,10 @@ import aiAnimationBannerImg from '../assets/images/ai_animation_banner.jpg';
 import aiAnimationYoutubeThumbImg from '../assets/images/ai_animation_youtube_thumb.jpg';
 import aiCodingBannerImg from '../assets/images/ai_coding_banner.jpg';
 import aiMusicBannerImg from '../assets/images/ai_music_banner.jpg';
-import curriculumModule1PreviewImg from '../assets/images/curriculum_module1_preview.png';
-import curriculumModule2PreviewImg from '../assets/images/curriculum_module2_preview.png';
-import curriculumModule3PreviewImg from '../assets/images/curriculum_module3_preview.png';
-import curriculumModule4PreviewImg from '../assets/images/curriculum_module4_preview.png';
-import curriculumModule5PreviewImg from '../assets/images/curriculum_module5_preview.png';
-import curriculumModule6PreviewImg from '../assets/images/curriculum_module6_preview.png';
-import curriculumModule7PreviewImg from '../assets/images/curriculum_module7_preview.png';
+import icebreakerPreviewImg from '../assets/images/icebreaker_screenshot.png';
+import aiDiscussionPreviewImg from '../assets/images/ai_discussion_screenshot.png';
+import teachingConceptPreviewImg from '../assets/images/teaching_concept_screenshot.png';
+import conclusionPreviewImg from '../assets/images/conclusion_screenshot.png';
 import realizationAudio from '../assets/audio/Realization.m4a';
 import realizationScreenshotImg from '../assets/images/realization_screenshot.png';
 import ghostTownCoverImg from '../assets/images/ghost_town_cover.png';
@@ -31,7 +28,7 @@ export const STATISTICS = [
   { value: 100, suffix: "+", label: "Student Projects Created", desc: "Original animations, games & tracks" },
   { value: 10, suffix: "+", label: "AI Tools Introduced", desc: "Ethical & age-appropriate platforms" },
   { value: 100, suffix: "%", label: "Project-Based Learning", desc: "Every student builds a portfolio" },
-  { value: 2, suffix: ":1", label: "Student-to-Mentor Ratio", desc: "Small interactive cohorts" }
+  { value: 4, suffix: ":1", label: "Student-to-Mentor Ratio", desc: "Small interactive cohorts" }
 ];
 
 export const WHY_US_FEATURES = [
@@ -55,7 +52,7 @@ export const WHY_US_FEATURES = [
   },
   {
     title: "Small Class Sizes",
-    desc: "Max 10 students per workshop for personalized guidance and peer collaboration.",
+    desc: "Max 16 students per workshop for personalized guidance and peer collaboration.",
     icon: "Users",
     color: "from-amber-400 to-orange-500"
   },
@@ -88,136 +85,81 @@ export const PROGRAMS: Program[] = [
       "End-of-camp Showcase Exhibition for parents"
     ],
     iconName: "Sun",
-    badge: "Completed",
-    gradient: "from-blue-600 via-indigo-600 to-purple-600",
-    signupText: "COMPLETED, new link will be released before the summer of 2027",
-    showQrCode: false
+    gradient: "from-blue-600 via-indigo-600 to-purple-600"
   },
   {
     id: "weekend-explorers",
-    title: "Weekend AI Explorers",
+    title: "Weekend AI Explorer Camp",
     status: "Open for Registration",
-    subtitle: "8-Week Saturday & Sunday Creator Labs (1 Hour/Week)",
+    subtitle: "4-Week Creator Labs (2 Hours/Week)",
     description: "A recurring weekend program where students continue building advanced projects, exploring new generative models, and collaborating on multiplayer games during the school year.",
-    duration: "8 Weeks (1 Hour/Week, Saturday & Sunday options)",
-    schedule: "2026-2027 school year",
+    duration: "4 Weeks (2 Hours/Week)",
+    schedule: "4-6 PM PST",
     targetAudience: "Grades 5-9",
-    highlights: [],
+    highlights: [
+      "1 animation, 1 song, 1 game, 1 avatar",
+      "frequent blooket review games"
+    ],
     iconName: "Calendar",
-    badge: "2026-2027",
-    gradient: "from-purple-600 to-pink-600",
-    signupUrl: "https://forms.gle/nS32w1b1BCvaJoDr8"
-  },
-  {
-    id: "school-workshops",
-    title: "Online Video Recordings to Master AI Like a Pro",
-    status: "Available Now",
-    subtitle: "Self-Paced On-Demand AI Video Masterclass",
-    description: "Self-paced video recordings covering generative AI tools, prompt engineering, digital media creation, and hands-on projects to master AI like a pro.",
-    duration: "3 hours in total recordings",
-    schedule: "On-demand self-paced",
-    targetAudience: "5th to 12th Graders",
-    highlights: [],
-    iconName: "Video",
-    badge: "Masterclass Videos",
-    gradient: "from-teal-500 to-cyan-600",
-    videoItems: [
-      {
-        id: "ai-animations",
-        header: "AI Animations",
-        videoUrl: "https://www.youtube.com/watch?v=heaTgXNPrdA",
-        thumbnailUrl: aiAnimationYoutubeThumbImg,
-        status: "available",
-        badge: "Watch on YouTube"
-      },
-      {
-        id: "ai-coding",
-        header: "AI Coding",
-        thumbnailUrl: aiCodingBannerImg,
-        status: "coming-soon",
-        badge: "Coming Soon"
-      },
-      {
-        id: "ai-music",
-        header: "AI Music",
-        thumbnailUrl: aiMusicBannerImg,
-        status: "coming-soon",
-        badge: "Coming Soon"
-      }
-    ]
+    gradient: "from-purple-600 to-pink-600"
   }
 ];
 
 export const CURRICULUM_STEPS: CurriculumStep[] = [
   {
     stepNumber: 1,
-    title: "Introduction to AI",
-    shortDesc: "Demystifying artificial intelligence, machine learning & neural networks.",
-    detailedOutcome: "Students learn how AI processes pattern recognition vs human imagination, play interactive classifier games, and establish safety guidelines.",
+    title: "Icebreaker",
+    shortDesc: "To personally know a little bit more about each student!",
+    detailedOutcome: "To personally know a little bit more about each student!",
+    purpose: "To personally know a little bit more about each student!",
     toolsUsed: [],
     sampleProject: "",
-    iconName: "Brain",
-    previewImage: curriculumModule1PreviewImg
+    iconName: "Users",
+    previewImage: icebreakerPreviewImg
   },
   {
     stepNumber: 2,
-    title: "Prompt Engineering",
-    shortDesc: "Mastering clear, descriptive, and imaginative instructions.",
-    detailedOutcome: "Discover how adjectives, perspectives, lighting cues, and constraints transform generic AI responses into highly focused creative outputs.",
-    toolsUsed: ["Prompt Canvas", "ChatGPT"],
+    title: "AI Discussion",
+    shortDesc: "To build on the students knowledge of the topic, before actually exploring it!",
+    detailedOutcome: "To build on the students knowledge of the topic, before actually exploring it!",
+    purpose: "To build on the students knowledge of the topic, before actually exploring it!",
+    toolsUsed: [],
     sampleProject: "",
-    iconName: "Terminal",
-    previewImage: curriculumModule2PreviewImg
+    iconName: "Brain",
+    previewImage: aiDiscussionPreviewImg
   },
   {
     stepNumber: 3,
-    title: "Image Generation",
-    shortDesc: "Turning text concepts into vivid digital illustration & concept art.",
-    detailedOutcome: "Explore style parameters, lighting, brushstrokes, and ethics regarding artist attribution and original creation.",
-    toolsUsed: ["KIE.ai", "Nano Banana 2"],
+    title: "Teaching the concept",
+    shortDesc: "So the student knows how to make there project!",
+    detailedOutcome: "So the student knows how to make there project!",
+    purpose: "So the student knows how to make there project!",
+    toolsUsed: [],
     sampleProject: "",
-    iconName: "Image",
-    previewImage: curriculumModule3PreviewImg
+    iconName: "Sparkles",
+    previewImage: teachingConceptPreviewImg
   },
   {
     stepNumber: 4,
-    title: "Animation & Motion",
-    shortDesc: "Breathing life into static graphics with frame AI interpolation.",
-    detailedOutcome: "Learn keyframing basics, camera motion prompts, and looping background synthesis for digital storytelling.",
-    toolsUsed: ["KIE.ai", "Seedance 1.5 Pro", "ElevenLabs", "CapCut"],
+    title: "Making your own",
+    shortDesc: "So the student knows how to make there project!",
+    detailedOutcome: "So the student knows how to make there project!",
+    purpose: "So the student knows how to make there project!",
+    toolsUsed: [],
     sampleProject: "",
     iconName: "Film",
-    previewImage: curriculumModule4PreviewImg
+    videoUrl: "https://www.youtube.com/watch?v=C3ilEGii8G4"
   },
   {
     stepNumber: 5,
-    title: "Music & Audio Stems",
-    shortDesc: "Composing original melodies, ambient tracks, and sound effects.",
-    detailedOutcome: "Understand tempo, mood tags, verse/chorus structures, and combining generated stems with human digital audio workstation edits.",
-    toolsUsed: ["Suno", "ChatGPT", "Claude"],
-    sampleProject: "",
-    iconName: "Music",
-    previewImage: curriculumModule5PreviewImg
-  },
-  {
-    stepNumber: 6,
-    title: "Coding with AI",
-    shortDesc: "Using AI co-pilots to write, debug, and expand Scratch & JavaScript logic.",
-    detailedOutcome: "Students write natural language prompts that AI translates into executable game loops, score variables, and particle effects.",
-    toolsUsed: ["Google AI Studio", "Grok", "Replit"],
-    sampleProject: "You can develop games with AI Code.",
-    iconName: "Code",
-    previewImage: curriculumModule6PreviewImg
-  },
-  {
-    stepNumber: 7,
-    title: "Creative Final Project",
-    shortDesc: "Designing and presenting a capstone portfolio piece.",
-    detailedOutcome: "Students pitch their project idea, iterate with high school student mentors, write a short creator statement on ethical usage, and present live to families.",
-    toolsUsed: ["Google Slides", "Canva"],
+    title: "Conclusion",
+    shortDesc: "To show us that the student took some key takeaways from the session!",
+    detailedOutcome: "To show us that the student took some key takeaways from the session!",
+    purpose: "To show us that the student took some key takeaways from the session!",
+    toolsUsed: [],
     sampleProject: "",
     iconName: "Trophy",
-    previewImage: curriculumModule7PreviewImg
+    previewImage: conclusionPreviewImg
   }
 ];
 
@@ -393,7 +335,7 @@ export const PARENT_WHY_REASONS = [
   },
   {
     title: "Small Interactive Cohorts",
-    desc: "With max 10 students per session, every child gets personalized mentorship and encouraging feedback.",
+    desc: "With max 16 students per session, every child gets personalized mentorship and encouraging feedback.",
     icon: "Heart"
   },
   {
@@ -458,7 +400,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     id: "faq-5",
     question: "How much does the program cost?",
-    answer: "As a student-led non-profit, our camp fees differ by course. Currently, our summer program for the 2027 summer break is not decided. The cost for the 8-Week Weekend camp is estimated at $25, plus around $15 more for the AI tools. When the recordings are released, they are planned to be free.",
+    answer: "As a student-led non-profit, our camp fees differ by course. Currently, the cost for our summer program for the 2027 summer break is not decided. The cost for the 4-Week Weekend camp is $30, including the AI Tools. The recordings are free and you can watch them on youtube.",
     category: "Enrollment"
   },
   {
@@ -471,71 +413,145 @@ export const FAQ_ITEMS: FAQItem[] = [
 
 export const RESOURCE_ITEMS: ResourceItem[] = [
   {
-    id: "res-1",
-    title: "Parent's Guide to Generative AI in Middle School",
-    category: "Beginner AI Guides",
-    summary: "A practical guide explaining what AI tools your middle schooler is encountering and how to encourage safe exploration.",
-    readTime: "5 min read",
-    difficulty: "Beginner",
-    format: "Article",
-    contentSnippet: "Generative AI is transforming how middle schoolers learn and play. Rather than banning these tools, guided hands-on creation builds critical literacy...",
-    linkText: "Read Complete Guide",
-    downloadable: true
+    id: "how-to-make-ai-animations",
+    title: "How to Make AI Animations",
+    category: "Tutorials",
+    format: "Video",
+    summary: "Learn how to transform text prompts and character images into cinematic AI animations using video models, camera motions, and CapCut editing.",
+    url: "https://www.youtube.com/watch?v=heaTgXNPrdA",
+    thumbnailUrl: aiAnimationYoutubeThumbImg,
+    badge: "Featured Masterclass",
+    tags: ["YouTube Video", "AI Animation", "Video Generation", "CapCut"],
+    isFeatured: true,
+    readTime: "Video Tutorial",
+    difficulty: "All Levels",
+    linkText: "Watch on YouTube"
   },
   {
-    id: "res-2",
-    title: "The Ultimate Prompt Engineering Cheat Sheet for Kids",
-    category: "Recommended AI Tools",
-    summary: "10 clear prompt formulas (Role + Task + Context + Style) for crafting awesome illustrations, stories, and code hints.",
-    readTime: "3 min read",
-    difficulty: "Beginner",
-    format: "Cheatsheet",
-    contentSnippet: "Formula: [Act as a digital artist] + [Draw a futuristic turtle] + [In neon cyberpunk style with dramatic volumetric lighting].",
-    linkText: "Download Cheat Sheet PDF",
-    downloadable: true
+    id: "tool-kie-ai",
+    title: "kie.ai",
+    category: "Tools",
+    format: "Tool",
+    summary: "AI video generation and animation platform for turning character prompts and creative ideas into dynamic motion sequences.",
+    url: "https://kie.ai",
+    badge: "AI Animation & Video",
+    tags: ["Video Generation", "Animation", "Creative AI"],
+    difficulty: "All Levels",
+    linkText: "Visit kie.ai"
   },
   {
-    id: "res-3",
+    id: "tool-elevenlabs",
+    title: "ElevenLabs",
+    category: "Tools",
+    format: "Tool",
+    summary: "High-fidelity voice synthesis, AI voiceovers, character dialogues, and dynamic audio effects for storytelling and animation.",
+    url: "https://elevenlabs.io/",
+    badge: "Voice Synthesis & FX",
+    tags: ["Voice AI", "Sound Effects", "Dialogue"],
+    difficulty: "All Levels",
+    linkText: "Visit elevenlabs.io"
+  },
+  {
+    id: "tool-suno",
+    title: "Suno",
+    category: "Tools",
+    format: "Tool",
+    summary: "AI music generator that creates full songs, background tracks, vocal harmonies, and soundscapes from text prompts.",
+    url: "https://suno.com",
+    badge: "AI Music Studio",
+    tags: ["Music Generation", "Soundtracks", "Audio"],
+    difficulty: "All Levels",
+    linkText: "Visit suno.com"
+  },
+  {
+    id: "tool-google-ai-studio",
+    title: "Google AI Studio",
+    category: "Tools",
+    format: "Tool",
+    summary: "Google's developer sandbox to test Gemini models, craft system instructions, brainstorm storyboards, and generate game code.",
+    url: "https://aistudio.google.com/",
+    badge: "Gemini Playground",
+    tags: ["Gemini AI", "Prompt Engineering", "Coding Logic"],
+    difficulty: "Intermediate",
+    linkText: "Visit aistudio.google.com"
+  },
+  {
+    id: "tool-heygen",
+    title: "HeyGen",
+    category: "Tools",
+    format: "Tool",
+    summary: "State-of-the-art AI avatar video creator for generating realistic speaking avatars, video presentations, and animated presenters.",
+    url: "https://app.heygen.com",
+    badge: "AI Avatars & Presenters",
+    tags: ["Digital Avatars", "Talking Video", "Presentations"],
+    difficulty: "All Levels",
+    linkText: "Visit app.heygen.com"
+  },
+  {
+    id: "pdf-ethical-ai-principles",
     title: "5 Principles of Responsible & Ethical AI Use",
-    category: "Responsible AI",
-    summary: "Our official AI Explorers student pledge: Honesty, Attribution, Safety, Bias Awareness, and Human Originality.",
+    category: "Safety",
+    format: "PDF",
+    summary: "A fundamental guide on ethical AI practices for middle schoolers: transparency, privacy protection, output verification, creator respect, and personal accountability.",
+    url: "/resources/5%20Principles%20of%20Responsible%20%26%20Ethical%20AI%20Use.pdf",
+    downloadUrl: "/resources/5%20Principles%20of%20Responsible%20%26%20Ethical%20AI%20Use.pdf",
+    fileSize: "71 KB",
+    badge: "Ethical AI Handout",
+    tags: ["Ethics", "Safety", "Digital Citizenship", "PDF"],
+    bulletPoints: [
+      "1. Be Honest About How You Use AI",
+      "2. Protect Privacy and Ask Permission",
+      "3. Check Information Before Trusting It",
+      "4. Treat People Fairly and Respect Their Work",
+      "5. Stay Responsible for the Final Result"
+    ],
+    difficulty: "All Levels",
+    readTime: "3 min read",
+    linkText: "View PDF Handout"
+  },
+  {
+    id: "pdf-prompt-cheat-code",
+    title: "The Ultimate Cheat Code for writing an AI Prompt",
+    category: "Tutorials",
+    format: "PDF",
+    summary: "Quick-reference prompt engineering cheat sheet that helps students craft clear, constraint-driven instructions for animations, music, games, and code.",
+    url: "/resources/The%20Ultimate%20Cheat%20Code%20for%20writing%20an%20AI%20Prompt.pdf",
+    downloadUrl: "/resources/The%20Ultimate%20Cheat%20Code%20for%20writing%20an%20AI%20Prompt.pdf",
+    fileSize: "75 KB",
+    badge: "Prompt Cheat Sheet",
+    tags: ["Prompt Engineering", "Creative Prompts", "AI Crafting", "PDF"],
+    bulletPoints: [
+      "Start With the Result You Want",
+      "Give Details That Change the Answer",
+      "Show What You Mean",
+      "Revise One Thing at a Time",
+      "Keep Your Judgment Switched On"
+    ],
+    difficulty: "All Levels",
     readTime: "4 min read",
-    difficulty: "All Ages",
-    format: "Article",
-    contentSnippet: "Principle 1: Always credit AI assistance when used. Principle 2: Never input private personal info into public models...",
-    linkText: "View Student Safety Pledge"
+    linkText: "View Cheat Sheet"
   },
   {
-    id: "res-4",
-    title: "Top 7 Kid-Friendly AI Creative Tools for 2026",
-    category: "Recommended AI Tools",
-    summary: "A curated list of safe, ad-free, web-based tools where students can build animations, music, and games without paywalls.",
-    readTime: "6 min read",
-    difficulty: "Intermediate",
-    format: "Interactive",
-    contentSnippet: "1. Google Teachable Machine (Free, instant machine vision in browser). 2. Scratch AI Blocks. 3. BandLab Education...",
-    linkText: "Explore Tool Registry"
-  },
-  {
-    id: "res-5",
-    title: "How to Build Your First Scratch Computer Vision Game",
-    category: "Student Tutorials",
-    summary: "Step-by-step video & text tutorial to build a hand-tracking game using machine learning models in Scratch.",
-    readTime: "10 min tutorial",
-    difficulty: "Intermediate",
-    format: "Video Guide",
-    contentSnippet: "Step 1: Open the Teachable Machine extension. Step 2: Record 30 samples of 'hand open' vs 'fist closed'...",
-    linkText: "Start Tutorial"
-  },
-  {
-    id: "res-6",
-    title: "Cyberbullying & Privacy Protections for Young Creators",
-    category: "Internet Safety",
-    summary: "Essential advice for keeping student personal details, face scans, and voice samples secure online.",
-    readTime: "4 min read",
-    difficulty: "All Ages",
-    format: "Article",
-    contentSnippet: "Protecting identity in the AI era means teaching children to never upload unverified photo portraits or private home addresses...",
-    linkText: "Read Safety Advisory"
+    id: "pdf-supporting-ai-explorers",
+    title: "Supporting AI Explorers: Helping Students Take the Lead",
+    category: "Guides",
+    format: "PDF",
+    summary: "A supportive facilitation guide for mentors, parents, and teachers to nurture student independence, troubleshoot hallucinations, and build healthy tech habits.",
+    url: "/resources/Supporting%20AI%20Explorers.pdf",
+    downloadUrl: "/resources/Supporting%20AI%20Explorers.pdf",
+    fileSize: "68 KB",
+    badge: "Educator & Parent Guide",
+    tags: ["Mentorship", "Student Agency", "Parent Support", "PDF"],
+    bulletPoints: [
+      "Ask Before Taking Over",
+      "Make Big Ideas Manageable",
+      "Treat Unexpected Results as Something to Investigate",
+      "Build Responsible Habits Into the Activity",
+      "Make Participation Comfortable"
+    ],
+    difficulty: "Mentors & Parents",
+    readTime: "3 min read",
+    linkText: "View Support Guide"
   }
 ];
+

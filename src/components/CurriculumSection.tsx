@@ -11,6 +11,8 @@ import {
   Trophy, 
   Sparkles, 
   Star,
+  Users,
+  Target,
   ArrowDown, 
   CheckCircle,
   Wrench,
@@ -36,6 +38,7 @@ export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode
       case 'Code': return <Code className="w-5 h-5" />;
       case 'Gamepad2': return <Gamepad2 className="w-5 h-5" />;
       case 'Trophy': return <Trophy className="w-5 h-5" />;
+      case 'Users': return <Users className="w-5 h-5" />;
       default: return <Sparkles className="w-5 h-5" />;
     }
   };
@@ -160,13 +163,22 @@ export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode
                       <h4 className={`text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${
                         isDarkMode ? 'text-slate-400' : 'text-slate-500'
                       }`}>
-                        <CheckCircle className="w-4 h-4 text-emerald-500" />
-                        Learning Objective & Skills Acquired
+                        {activeStepData.purpose ? (
+                          <>
+                            <Target className="w-4 h-4 text-teal-500" />
+                            Purpose:
+                          </>
+                        ) : (
+                          <>
+                            <CheckCircle className="w-4 h-4 text-emerald-500" />
+                            Learning Objective & Skills Acquired
+                          </>
+                        )}
                       </h4>
                       <p className={`text-sm sm:text-base leading-relaxed ${
                         isDarkMode ? 'text-slate-200' : 'text-slate-700'
                       }`}>
-                        {activeStepData.detailedOutcome}
+                        {activeStepData.purpose || activeStepData.detailedOutcome}
                       </p>
                     </div>
 
@@ -196,13 +208,22 @@ export const CurriculumSection: React.FC<CurriculumSectionProps> = ({ isDarkMode
                     <h4 className={`text-xs font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5 ${
                       isDarkMode ? 'text-slate-400' : 'text-slate-500'
                     }`}>
-                      <CheckCircle className="w-4 h-4 text-emerald-500" />
-                      Learning Objective & Skills Acquired
+                      {activeStepData.purpose ? (
+                        <>
+                          <Target className="w-4 h-4 text-teal-500" />
+                          Purpose:
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle className="w-4 h-4 text-emerald-500" />
+                          Learning Objective & Skills Acquired
+                        </>
+                      )}
                     </h4>
                     <p className={`text-sm sm:text-base leading-relaxed ${
                       isDarkMode ? 'text-slate-200' : 'text-slate-700'
                     }`}>
-                      {activeStepData.detailedOutcome}
+                      {activeStepData.purpose || activeStepData.detailedOutcome}
                     </p>
                   </div>
                 )}

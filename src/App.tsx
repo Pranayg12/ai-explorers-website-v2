@@ -6,17 +6,13 @@
 import React, { useState, useEffect } from "react";
 import { Navbar } from "./components/Navbar";
 import { HeroSection } from "./components/HeroSection";
-import { AboutSection } from "./components/AboutSection";
 import { StatisticsSection } from "./components/StatisticsSection";
 import { WhyUsSection } from "./components/WhyUsSection";
+import { ClassExperienceSection } from "./components/ClassExperienceSection";
 import { ProgramsSection } from "./components/ProgramsSection";
-import { CurriculumSection } from "./components/CurriculumSection";
-import { ShowcaseSection } from "./components/ShowcaseSection";
 import { ParentSection } from "./components/ParentSection";
 import { FAQSection } from "./components/FAQSection";
 import { Footer } from "./components/Footer";
-import { SuperMarioGameModal } from "./components/SuperMarioGameModal";
-import { OnlineVideoEditorModal } from "./components/OnlineVideoEditorModal";
 import { PageTab } from "./types";
 
 export default function App() {
@@ -26,10 +22,6 @@ export default function App() {
   });
 
   const [activeTab, setActiveTab] = useState<PageTab>("home");
-  
-  // Interactive Modal States
-  const [activeGameModal, setActiveGameModal] = useState<string | null>(null);
-  const [activeVideoEditorModal, setActiveVideoEditorModal] = useState<boolean>(false);
 
   useEffect(() => {
     localStorage.setItem("ai_explorers_theme", isDarkMode ? "dark" : "light");
@@ -41,10 +33,7 @@ export default function App() {
   }, [isDarkMode]);
 
   const handleJoinClick = () => {
-    const programsSection = document.getElementById("programs");
-    if (programsSection) {
-      programsSection.scrollIntoView({ behavior: "smooth" });
-    }
+    window.open("https://forms.gle/L2bLtb6KMcynLJZf8", "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -70,10 +59,6 @@ export default function App() {
           />
         </div>
 
-        <div id="about">
-          <AboutSection isDarkMode={isDarkMode} />
-        </div>
-
         <div id="impact">
           <StatisticsSection isDarkMode={isDarkMode} />
         </div>
@@ -82,21 +67,13 @@ export default function App() {
           <WhyUsSection isDarkMode={isDarkMode} />
         </div>
 
+        {/* Take a look into our class - Curriculum Roadmap format */}
+        <div id="our-class">
+          <ClassExperienceSection isDarkMode={isDarkMode} />
+        </div>
+
         <div id="programs">
           <ProgramsSection isDarkMode={isDarkMode} />
-        </div>
-
-        <div id="curriculum">
-          <CurriculumSection isDarkMode={isDarkMode} />
-        </div>
-
-        {/* Student Showcase with Super Mario 2D and Online Video Editor */}
-        <div id="gallery">
-          <ShowcaseSection
-            isDarkMode={isDarkMode}
-            onLaunchGame={(gameId) => setActiveGameModal(gameId)}
-            onLaunchEditor={() => setActiveVideoEditorModal(true)}
-          />
         </div>
 
         <div id="testimonials">
@@ -114,19 +91,6 @@ export default function App() {
         isDarkMode={isDarkMode}
         onJoinClick={handleJoinClick}
       />
-
-      {/* Super Mario 2D Interactive Game Modal */}
-      {activeGameModal === "mario" && (
-        <SuperMarioGameModal onClose={() => setActiveGameModal(null)} />
-      )}
-
-      {/* Online Video Editor Interactive Modal Popup */}
-      {activeVideoEditorModal && (
-        <OnlineVideoEditorModal
-          onClose={() => setActiveVideoEditorModal(false)}
-          isDarkMode={isDarkMode}
-        />
-      )}
     </div>
   );
 }

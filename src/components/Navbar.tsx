@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { PageTab } from '../types';
 import { 
-  Sparkles, 
   Sun, 
   Moon, 
   ArrowRight,
@@ -14,7 +13,7 @@ interface NavbarProps {
   setActiveTab: (tab: PageTab) => void;
   isDarkMode: boolean;
   setIsDarkMode: (dark: boolean) => void;
-  onJoinClick: () => void;
+  onJoinClick?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -28,7 +27,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'impact', 'why-us', 'programs', 'curriculum', 'gallery', 'testimonials', 'faq'];
+    const sectionIds = ['home', 'impact', 'why-us', 'our-class', 'programs', 'testimonials', 'faq'];
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -62,12 +61,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
     { id: 'impact', label: 'Impact' },
     { id: 'why-us', label: 'Why us?' },
+    { id: 'our-class', label: 'Our Class' },
     { id: 'programs', label: 'Programs' },
-    { id: 'curriculum', label: 'Curriculum Roadmap' },
-    { id: 'gallery', label: 'Gallery' },
     { id: 'testimonials', label: 'Parent Testimony' },
     { id: 'faq', label: 'FAQ' },
   ];
@@ -103,19 +100,14 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Logo & Brand */}
           <button 
             onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 group text-left focus:outline-none shrink-0"
+            className="flex items-center group text-left focus:outline-none shrink-0"
             id="brand-logo-btn"
           >
-            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform duration-300">
-              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 animate-pulse" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className={`text-lg sm:text-xl font-extrabold tracking-tight ${isDarkMode ? 'text-white' : 'text-slate-900'}`}>
-                  AI Explorers
-                </span>
-              </div>
-            </div>
+            <span className={`text-lg sm:text-xl font-extrabold tracking-tight transition-colors ${
+              isDarkMode ? 'text-white group-hover:text-blue-400' : 'text-slate-900 group-hover:text-blue-600'
+            }`}>
+              AI Explorers
+            </span>
           </button>
 
           {/* Desktop Nav Links */}
@@ -164,14 +156,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             </button>
 
             {/* Highlighted "Enroll Now" Button */}
-            <button
-              onClick={onJoinClick}
+            <a
+              href="https://forms.gle/L2bLtb6KMcynLJZf8"
+              target="_blank"
+              rel="noopener noreferrer"
               id="enroll-now-header-btn"
               className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-semibold text-xs sm:text-sm shadow-md shadow-indigo-500/25 hover:shadow-lg hover:shadow-indigo-500/35 transition-all duration-300 flex items-center gap-2 group transform active:scale-95"
             >
               <span>Enroll Now</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
 
           {/* Mobile Toggle Button */}
@@ -221,16 +215,16 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           <div className="pt-2">
-            <button
-              onClick={() => {
-                onJoinClick();
-                setMobileMenuOpen(false);
-              }}
+            <a
+              href="https://forms.gle/L2bLtb6KMcynLJZf8"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold text-center shadow-md flex items-center justify-center gap-2 text-sm"
             >
               <span>Enroll Now</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       )}

@@ -59,12 +59,10 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, isDarkMode, onJoin
             <ul className="space-y-2 text-sm">
               {[
                 { id: 'home', label: 'Home' },
-                { id: 'about', label: 'About' },
                 { id: 'impact', label: 'Impact' },
                 { id: 'why-us', label: 'Why Us' },
+                { id: 'our-class', label: 'Our Class' },
                 { id: 'programs', label: 'Programs' },
-                { id: 'curriculum', label: 'Curriculum' },
-                { id: 'gallery', label: 'Gallery' },
                 { id: 'testimonials', label: 'Parent Testimony' },
               ].map((item) => (
                 <li key={item.id}>
@@ -106,12 +104,14 @@ export const Footer: React.FC<FooterProps> = ({ setActiveTab, isDarkMode, onJoin
                 </button>
               </li>
               <li>
-                <button
-                  onClick={onJoinClick}
-                  className="text-blue-400 font-bold hover:underline"
+                <a
+                  href="https://forms.gle/L2bLtb6KMcynLJZf8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 font-bold hover:underline inline-flex items-center gap-1"
                 >
                   Enroll Now →
-                </button>
+                </a>
               </li>
             </ul>
           </div>
